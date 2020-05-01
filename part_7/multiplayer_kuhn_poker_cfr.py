@@ -32,6 +32,11 @@ class InformationSet():
     def get_average_strategy(self) -> np.array:
         return self.normalize(self.strategy_sum.copy())
 
+    def get_average_strategy_with_threshold(self, threshold: float) -> np.array:
+        avg_strat = self.get_average_strategy()
+        avg_strat[avg_strat < threshold] = 0
+        return self.normalize(avg_strat)
+
 
 class KuhnPoker():
     @staticmethod
